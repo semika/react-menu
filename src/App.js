@@ -3,11 +3,19 @@ import items from './data';
 import { useEffect, useState } from 'react';
 import Menu from './Menu';
 import Category from './Category';
+import GoogleLoginButton from './GoogleLoginButton';
+import AppleLoginButton from './AppleLoginButton';
+import GoogleLoginCallBack from './GoogleLoginCallBack';
+import AppleLoginCallBack from './AppleLoginCallBack';
+import Home from './Home';
 import { getToken } from "firebase/messaging";
 import { messaging, analytics } from "./firebase/firebaseConfig";
 import { toast, ToastContainer } from "react-toastify";
 import Message from "./Message";
 import "react-toastify/dist/ReactToastify.css";
+import Button from '@mui/material/Button';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 // Handle incoming messages. Called when:
 // - a message is received while the app has focus
 // - the user clicks on an app notification created by a service worker
@@ -15,12 +23,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { onMessage } from "firebase/messaging";
 import { logEvent } from 'firebase/analytics';
 
-const allCategories = ['all', ... new Set(items.map((item) => item.category))];
-
 function App() {
   
   const[menuItems, setMenuItems] = useState(items);
-  const[categories, setCategories] = useState(allCategories);
 
   const filterItems = (category) => {
     if (category === 'all') {
@@ -29,6 +34,14 @@ function App() {
     }
     const filteredItems = items.filter((item) => item.category === category);
     setMenuItems(filteredItems);
+  }
+  
+  const About = () => {
+    return <h1>About Page</h1>;
+  }
+  
+  const Contact = () => {
+    return <h1>Contact Page</h1>;
   }
 
   useEffect(() => {
@@ -42,17 +55,30 @@ function App() {
   });
 
   return (
-    <main>
-      <section className='menu section'>
-        <div className='title'>
-          <h2>Our Menu</h2>
-          <div className='underline'></div>
-        </div>
-        <Category categories={categories} filterItemsMethod={filterItems}></Category>
-        <Menu menuItems={menuItems}></Menu>
-        <ToastContainer />
-      </section>
-    </main>
+
+    <BrowserRouter>
+      {/* Navigation */}
+      <nav>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/google-login">Google Login</Link> |{" "}
+        <Link to="/apple-login">Apple Login</Link> |{" "}
+        <Link to="/about">About</Link> |{" "}
+        <Link to="/contact">Contact</Link> |{" "}
+      </nav>
+
+      {/* Routes */}
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/google-login" element={<GoogleLoginButton />} />
+        <Route path="/apple-login" element={<AppleLoginButton />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+
+        <Route path="/google-callback" element={<GoogleLoginCallBack />} />
+        <Route path="/apple-callback" element={<AppleLoginCallBack/>} />
+
+      </Routes>
+    </BrowserRouter>
   );
 
 
