@@ -7,14 +7,15 @@ importScripts(
 // Initialize the Firebase app in the service worker
 // "Default" Firebase configuration (prevents errors)
 const firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-    measurementId: ""
+    apiKey: "xxx",
+    authDomain: "xxx",
+    projectId: "xxx",
+    storageBucket: "xxx",
+    messagingSenderId: "xxx",
+    appId: "xxx",
+    measurementId: "xxx"
   };
+
 
 firebase.initializeApp(firebaseConfig);
 

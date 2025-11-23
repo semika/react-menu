@@ -1,12 +1,14 @@
 import './App.css';
 import items from './data';
 import { useEffect, useState } from 'react';
-import Menu from './Menu';
-import Category from './Category';
-import GoogleLoginButton from './GoogleLoginButton';
-import AppleLoginButton from './AppleLoginButton';
-import GoogleLoginCallBack from './GoogleLoginCallBack';
-import AppleLoginCallBack from './AppleLoginCallBack';
+import GoogleLoginButton from './component/google-login-button/GoogleLoginButton';
+import GoogleLoginCallBack from './component/google-login-callback/GoogleLoginCallBack';
+
+import AppleLoginButton from './component/apple-login-button/AppleLoginButton';
+import AppleLoginCallBack from './component/apple-login-callback/AppleLoginCallBack';
+
+import WebauthnRegistrationHome from './component/webauthn-registration/WebauthnRegistrationHome';
+
 import Home from './Home';
 import { getToken } from "firebase/messaging";
 import { messaging, analytics } from "./firebase/firebaseConfig";
@@ -64,6 +66,7 @@ function App() {
         <Link to="/apple-login">Apple Login</Link> |{" "}
         <Link to="/about">About</Link> |{" "}
         <Link to="/contact">Contact</Link> |{" "}
+        <Link to="/webauthn-user-registration-home">WenAuthn Registration</Link> |{" "}
       </nav>
 
       {/* Routes */}
@@ -73,10 +76,9 @@ function App() {
         <Route path="/apple-login" element={<AppleLoginButton />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-
         <Route path="/google-callback" element={<GoogleLoginCallBack />} />
         <Route path="/apple-callback" element={<AppleLoginCallBack/>} />
-
+        <Route path="/webauthn-user-registration-home" element={<WebauthnRegistrationHome/>} />
       </Routes>
     </BrowserRouter>
   );

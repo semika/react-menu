@@ -4,13 +4,13 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 //Firebase Config values imported from .env file
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
+  apiKey: "xxx",
+  authDomain: "xxx",
+  projectId: "xxx",
+  storageBucket: "xxx",
+  messagingSenderId: "xxx",
+  appId: "xxx",
+  measurementId: "xxx"
 };
 
 // Initialize Firebase

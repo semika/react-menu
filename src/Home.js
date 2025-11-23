@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from 'react';
-import Category from './Category';
-import GoogleLogin from './GoogleLoginButton';
+import Category from './component/category/Category';
 import { toast, ToastContainer } from "react-toastify";
 import items from './data';
 import Menu from './Menu';
